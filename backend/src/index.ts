@@ -1,8 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { Request, Response } from 'express';
 import productRouter from './routers/product-router';
-import ApiError from './errors/error-api';
+import { errorMiddleware } from './middlewares/error-middleware';
 
 dotenv.config();
 
@@ -16,10 +15,7 @@ app.use(express.json());
 app.use('/api/product', productRouter);
 
 // error handling
-app.use((err: ApiError, req: Request, res: Response, next: Function) => {
-    res.status(err.status).json({message: err.message});
-    next();
-});
+app.use(errorMiddleware);
 
 try {
     app.listen(PORT, () => console.log(`Server starts on ${PORT}`));
