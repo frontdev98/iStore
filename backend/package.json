@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "npx tsc",
+    "dev": "nodemon ./dist/index.js",
+    "clean": "rm -r ./dist",
+    "migrate": "npx prisma migrate",
+    "generate": "npx prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@prisma/client": "^6.11.1",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.10",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.11.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1"
+  }
+}
