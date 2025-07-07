@@ -8,8 +8,8 @@
     "compile": "npx tsc",
     "dev": "nodemon ./dist/index.js",
     "clean": "rm -r ./dist",
-    "migrate": "cd src/prisma && prisma migrate dev",
-    "generate": "cd src/prisma && npx prisma generate"
+    "migrate": "cd prisma && prisma migrate dev",
+    "generate": "cd prisma && npx prisma generate"
   },
   "keywords": [],
   "author": "",
