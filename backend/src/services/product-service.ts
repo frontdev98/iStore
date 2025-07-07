@@ -16,9 +16,9 @@ class ProductService {
         return products;
     }
 
-    async getOne(id: number): Promise<productDTO> {
+    async getOne(name: string): Promise<productDTO> {
         const product_ = await db.product.findUnique({
-            where: {id},
+            where: {name},
             select: {
                 name: true,
                 price: true,
