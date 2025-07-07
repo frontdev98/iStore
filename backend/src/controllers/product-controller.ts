@@ -1,13 +1,18 @@
 import { Request, Response } from 'express';
 import productService from '../services/product-service';
+import ApiError from '../errors/error-api';
 
 class ProductController {
     async one(req: Request, res: Response, next: Function): Promise<any>{
-        const name = req.params['product-name'];
-        console.log(name);
+        const name = req.params.name;
 
         try {
             const product = await productService.getOne(name);
+
+            if (product === null) {
+                throw ApiError.NotFound();
+            }
+            
             return res.json(product);
         
         } catch (e) {

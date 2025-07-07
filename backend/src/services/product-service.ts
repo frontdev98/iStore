@@ -16,28 +16,17 @@ class ProductService {
         return products;
     }
 
-    async getOne(name: string): Promise<productDTO> {
-        try {
-            const product_ = await db.product.findUnique({
-                where: {name},
-                select: {
-                    name: true,
-                    price: true,
-                    year: true
-                }
-            });
-    
-            if (product_ === null) {
-                throw ApiError.NotFound();
+    async getOne(name: string): Promise<productDTO|null> {
+        const product_ = await db.product.findUnique({
+            where: {name},
+            select: {
+                name: true,
+                price: true,
+                year: true
             }
-    
-            return product_;
+        });
 
-        } catch (e) {
-            console.log(e);
-            throw ApiError.ServerError();
-        }
-        
+        return product_;
     }
 
     async create(data: productDTO): Promise<productDTO> {
