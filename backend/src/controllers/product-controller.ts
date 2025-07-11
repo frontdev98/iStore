@@ -3,7 +3,7 @@ import productService from '../services/product-service';
 import ApiError from '../errors/error-api';
 
 class ProductController {
-    public async all(req: Request, res: Response, next: Function) {
+    public async all(req: Request, res: Response, next: Function): Promise<any> { // fix returned value
         try {
             const products = await productService.getAll();
             return res.json(products);
@@ -13,7 +13,7 @@ class ProductController {
             next(e);
         }
     }
-    public async one(req: Request, res: Response, next: Function) {
+    public async one(req: Request, res: Response, next: Function): Promise<any> { // fix returned value
         const name = req.params.name;
 
         try {
@@ -30,9 +30,13 @@ class ProductController {
             next(e);
         }
     }
-    public async create(req: Request, res: Response, next: Function) {
+    public async create(req: Request, res: Response, next: Function): Promise<any> {
+        const {name, year} = req.body;
+        const price = +req.body.price;
+
         try {
-            
+            const product = await productService.create({name, price, year});
+            return res.json(product);
         }
         catch(e){
             console.log(e)
