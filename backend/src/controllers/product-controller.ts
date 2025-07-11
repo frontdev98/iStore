@@ -3,7 +3,17 @@ import productService from '../services/product-service';
 import ApiError from '../errors/error-api';
 
 class ProductController {
-    async one(req: Request, res: Response, next: Function): Promise<any>{
+    public async all(req: Request, res: Response, next: Function) {
+        try {
+            const products = await productService.getAll();
+            return res.json(products);
+        }
+        catch(e){
+            console.log(e)
+            next(e);
+        }
+    }
+    public async one(req: Request, res: Response, next: Function) {
         const name = req.params.name;
 
         try {
@@ -14,18 +24,36 @@ class ProductController {
             }
             
             return res.json(product);
-        
-        } catch (e) {
+        }
+        catch(e){
+            console.log(e)
             next(e);
         }
     }
-
-    async all(req: Request, res: Response, next: Function): Promise<any> {
+    public async create(req: Request, res: Response, next: Function) {
         try {
-            const products = await productService.getAll();
-            return res.json(products);
-        
-        } catch (e) {
+            
+        }
+        catch(e){
+            console.log(e)
+            next(e);
+        }
+    }
+    public async update(req: Request, res: Response, next: Function) {
+        try {
+            
+        }
+        catch(e){
+            console.log(e)
+            next(e);
+        }
+    }
+    public async delete(req: Request, res: Response, next: Function) {
+        try {
+            
+        }
+        catch(e){
+            console.log(e)
             next(e);
         }
     }

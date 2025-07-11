@@ -1,5 +1,4 @@
 import { PrismaClient } from "../../prisma/src/generated/prisma";
-import ApiError from "../errors/error-api";
 import productDTO from "../dtos/product-dto";
 
 const db = new PrismaClient();
